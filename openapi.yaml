@@ -1,0 +1,104 @@
+---
+swagger: "2.0"
+info:
+  title: iris
+  description: iris apis
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: 1.0.0
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /atms:
+    get:
+      tags:
+      - ATM
+      summary: List All ATMS
+      description: Gets a list of all `ATM` entities.
+      operationId: getATMS
+      responses:
+        200:
+          description: Successful response - returns an array of `ATM` entities.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ATM'
+    post:
+      summary: Create a ATM
+      description: Creates a new instance of a `ATM`.
+      operationId: createATM
+      parameters:
+      - name: body
+        in: body
+        description: A new `ATM` to be created.
+        required: true
+        schema:
+          $ref: '#/definitions/ATM'
+      responses:
+        201:
+          description: Successful response.
+  /atms/{aTMId}:
+    get:
+      summary: Get a ATM
+      description: Gets the details of a single instance of a `ATM`.
+      operationId: getATM
+      responses:
+        200:
+          description: Successful response - returns a single `ATM`.
+          schema:
+            $ref: '#/definitions/ATM'
+    put:
+      summary: Update a ATM
+      description: Updates an existing `ATM`.
+      operationId: updateATM
+      parameters:
+      - name: body
+        in: body
+        description: Updated `ATM` information.
+        required: true
+        schema:
+          $ref: '#/definitions/ATM'
+      responses:
+        202:
+          description: Successful response.
+    delete:
+      summary: Delete a ATM
+      description: Deletes an existing `ATM`.
+      operationId: deleteATM
+      responses:
+        204:
+          description: Successful response.
+    parameters:
+    - name: aTMId
+      in: path
+      description: A unique identifier for a `ATM`.
+      required: true
+      type: string
+definitions:
+  ATM:
+    description: ATM info
+    required: []
+    type: object
+    properties:
+      AtmId:
+        type: string
+      Location:
+        type: string
+      DisplayId:
+        type: string
+      State:
+        type: string
+      CashStatus:
+        type: string
+      Availability:
+        type: string
+      Longitude:
+        type: string
+      Latitude:
+        type: string
+      displacement:
+        format: double
+        type: number
